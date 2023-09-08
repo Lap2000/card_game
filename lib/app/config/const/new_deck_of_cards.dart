@@ -1,0 +1,71 @@
+import 'package:card_game/app/type/card_value_enum.dart';
+import 'package:card_game/app/type/suits_enum.dart';
+import 'package:card_game/infrastructure/models/playing_card/playing_card.dart';
+
+final List<PlayingCard> newDeckOfCards = [
+  // Ace
+  PlayingCard(Suit.spades, CardValue.ace),
+  PlayingCard(Suit.clubs, CardValue.ace),
+  PlayingCard(Suit.diamonds, CardValue.ace),
+  PlayingCard(Suit.hearts, CardValue.ace),
+  // Two
+  PlayingCard(Suit.spades, CardValue.two),
+  PlayingCard(Suit.clubs, CardValue.two),
+  PlayingCard(Suit.diamonds, CardValue.two),
+  PlayingCard(Suit.hearts, CardValue.two),
+  // Three
+  PlayingCard(Suit.spades, CardValue.three),
+  PlayingCard(Suit.clubs, CardValue.three),
+  PlayingCard(Suit.diamonds, CardValue.three),
+  PlayingCard(Suit.hearts, CardValue.three),
+  // Four
+  PlayingCard(Suit.spades, CardValue.four),
+  PlayingCard(Suit.clubs, CardValue.four),
+  PlayingCard(Suit.diamonds, CardValue.four),
+  PlayingCard(Suit.hearts, CardValue.four),
+  // Five
+  PlayingCard(Suit.spades, CardValue.five),
+  PlayingCard(Suit.clubs, CardValue.five),
+  PlayingCard(Suit.diamonds, CardValue.five),
+  PlayingCard(Suit.hearts, CardValue.five),
+  // Six
+  PlayingCard(Suit.spades, CardValue.six),
+  PlayingCard(Suit.clubs, CardValue.six),
+  PlayingCard(Suit.diamonds, CardValue.six),
+  PlayingCard(Suit.hearts, CardValue.six),
+  // Seven
+  PlayingCard(Suit.spades, CardValue.seven),
+  PlayingCard(Suit.clubs, CardValue.seven),
+  PlayingCard(Suit.diamonds, CardValue.seven),
+  PlayingCard(Suit.hearts, CardValue.seven),
+  // Eight
+  PlayingCard(Suit.spades, CardValue.eight),
+  PlayingCard(Suit.clubs, CardValue.eight),
+  PlayingCard(Suit.diamonds, CardValue.eight),
+  PlayingCard(Suit.hearts, CardValue.eight),
+  // Nine
+  PlayingCard(Suit.spades, CardValue.nine),
+  PlayingCard(Suit.clubs, CardValue.nine),
+  PlayingCard(Suit.diamonds, CardValue.nine),
+  PlayingCard(Suit.hearts, CardValue.nine),
+  // Ten
+  PlayingCard(Suit.spades, CardValue.ten),
+  PlayingCard(Suit.clubs, CardValue.ten),
+  PlayingCard(Suit.diamonds, CardValue.ten),
+  PlayingCard(Suit.hearts, CardValue.ten),
+  // Jack
+  PlayingCard(Suit.spades, CardValue.jack),
+  PlayingCard(Suit.clubs, CardValue.jack),
+  PlayingCard(Suit.diamonds, CardValue.jack),
+  PlayingCard(Suit.hearts, CardValue.jack),
+  // Queen
+  PlayingCard(Suit.spades, CardValue.queen),
+  PlayingCard(Suit.clubs, CardValue.queen),
+  PlayingCard(Suit.diamonds, CardValue.queen),
+  PlayingCard(Suit.hearts, CardValue.queen),
+  // King
+  PlayingCard(Suit.spades, CardValue.king),
+  PlayingCard(Suit.clubs, CardValue.king),
+  PlayingCard(Suit.diamonds, CardValue.king),
+  PlayingCard(Suit.hearts, CardValue.king),
+];
