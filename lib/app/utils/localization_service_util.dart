@@ -15,24 +15,28 @@ class LocalizationService extends Translations {
   }
 
   static final langCodes = [
-    'en',
     'vi',
+    'en',
+    'ja',
   ];
 
   static final locales = [
-    const Locale('en', 'US'),
     const Locale('vi', 'VN'),
+    const Locale('en', 'US'),
+    const Locale('ja', 'JP'),
   ];
 
   static final langs = LinkedHashMap.from({
-    'en': 'English',
     'vi': 'Tiếng Việt',
+    'en': 'English',
+    'ja': 'Japan',
   });
 
   @override
   Map<String, Map<String, String>> get keys => {
-        'en_US': en,
         'vi_VN': vi,
+        'en_US': en,
+        // 'ja_JP': ja,
       };
 
   static Locale? _getLocaleFromLanguage({String? langCode}) {
@@ -59,9 +63,20 @@ extension LanguageExt on Language {
   static Locale getLocale(String key) {
     switch (key) {
       case 'vi':
-        return LocalizationService.locales[1];
-      default:
         return LocalizationService.locales[0];
+      default:
+        return LocalizationService.locales[1];
+    }
+  }
+
+  static String getTitle(String key) {
+    switch (key) {
+      case 'vi':
+        return 'Việt Nam';
+      case 'ja':
+        return 'Japanese';
+      default:
+        return 'English';
     }
   }
 }

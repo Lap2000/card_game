@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:card_game/app/config/const/assets_const.dart';
 import 'package:card_game/app/type/card_value_enum.dart';
 import 'package:card_game/app/type/suits_enum.dart';
+import 'package:card_game/app/utils/Localization/localkeys.dart';
 import 'package:card_game/app/utils/dialog_util.dart';
 import 'package:card_game/infrastructure/models/playing_card/playing_card.dart';
 import 'package:card_game/presentation/components/button/image_button/back_button.dart';
@@ -63,12 +66,16 @@ class BlackJackPage extends StatelessWidget {
                             MainBackButton(
                               padding: EdgeInsets.zero,
                               backAction: () {
-                                DialogUtil.showGetBackDialog();
+                                DialogUtil.showConfirmDialog(
+                                  context,
+                                  title: LocaleKeys.back.tr,
+                                  confirmAction: Get.back,
+                                );
                               },
                             ),
                             MainSettingsButton(
                               padding: EdgeInsets.zero,
-                              backAction: () {
+                              settingsAction: () {
                                 callGetCardAnimation();
                               },
                             ),
@@ -134,6 +141,7 @@ class BlackJackPage extends StatelessWidget {
                         const SizedBox(height: 50),
                         Expanded(
                           child: FreeCards(
+                            action: controller.hitFreeCards,
                             builder: (
                               BuildContext context,
                               void Function() func,
@@ -184,20 +192,13 @@ class BlackJackPage extends StatelessWidget {
     Get.put(BlackJackController());
     final controller = BlackJackController.to;
 
-    final list = [
-      PlayingCard(Suit.hearts, CardValue.ten),
-      PlayingCard(Suit.spades, CardValue.nine),
-      PlayingCard(Suit.diamonds, CardValue.jack),
-      PlayingCard(Suit.clubs, CardValue.ace),
-    ];
-
     return Obx(
       () => Transform(
         alignment:
             controller.isChange.value ? Alignment.center : Alignment.center,
         transform: Matrix4.identity()
           ..setEntry(3, 2, 0.002)
-          ..rotateY(3.14 * controller.animation.value.value),
+          ..rotateY(pi * controller.animation.value.value),
         child: GestureDetector(
           onTap: () {
             if (controller.animationStatus == AnimationStatus.dismissed) {
@@ -207,10 +208,12 @@ class BlackJackPage extends StatelessWidget {
             }
           },
           child: Center(
-            child: CardList(
-              cardList: list,
-              isShowBack:
-                  controller.animation.value.value >= 0.5 ? true : false,
+            child: Obx(
+              () => CardList(
+                cardList: controller.player1.value.cards,
+                isShowBack:
+                    controller.animation.value.value >= 0.5 ? true : false,
+              ),
             ),
           ),
         ),

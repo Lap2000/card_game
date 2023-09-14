@@ -11,9 +11,6 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(LoginController());
     final controller = LoginController.to;
-    ShapeBorder shape = RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5),
-        side: const BorderSide(color: Colors.black, width: 1));
     return WillPopScope(
       onWillPop: () async => false,
       child: SafeArea(

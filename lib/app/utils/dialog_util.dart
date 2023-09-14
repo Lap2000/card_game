@@ -1,71 +1,67 @@
-import 'package:card_game/presentation/controllers/login_controller.dart';
+import 'package:card_game/presentation/components/dialog/base_dialog.dart';
+import 'package:card_game/presentation/components/dialog/language_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:one_context/one_context.dart';
 
-import 'localization_service_util.dart';
-
 class DialogUtil {
+  // Show language dialog
   static Future<void> showLanguageDialog() async {
-    Get.put(LoginController());
-    final controller = LoginController.to;
-
-    List<Widget> buildLanguagesList() {
-      var list = <Widget>[];
-      LocalizationService.langs.forEach((key, value) {
-        list.add(
-          SimpleDialogOption(
-            onPressed: () {
-              LocalizationService.changeLocale(LanguageExt.getLocale(key));
-              controller.refreshAppBarTitle();
-              OneContext().popDialog();
-            },
-            child: Text(value),
-          ),
-        );
-      });
-      return list;
-    }
-
     await OneContext().showDialog<int>(
       barrierDismissible: true,
       builder: (BuildContext context) {
-        return SimpleDialog(
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          title: const Text('Select language'),
-          children: buildLanguagesList(),
-        );
+        return const LanguageDialog();
       },
     );
   }
 
-  static Future<void> showGetBackDialog() async {
-    await OneContext().showDialog<int>(
+  // Show confirm dialog
+  static Future<void> showConfirmDialog(
+    BuildContext context, {
+    String? title,
+    String? message,
+    VoidCallback? confirmAction,
+  }) async {
+    showGeneralDialog(
+      context: context,
+      barrierLabel: "ImageBackground",
       barrierDismissible: true,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Do you want to leave?"),
-          actions: [
-            TextButton(
-              onPressed: OneContext().popDialog,
-              child: const Text(
-                'Cancel',
-                style: TextStyle(color: Colors.black),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                OneContext().popDialog();
-                Get.back();
-              },
-              child: const Text(
-                'Yes',
-                style: TextStyle(color: Colors.red),
-              ),
-            ),
-          ],
+      barrierColor: Colors.black.withOpacity(0.6),
+      transitionDuration: const Duration(milliseconds: 500),
+      pageBuilder: (ctx, __, ___) {
+        return BaseDialog(
+          dialogContext: ctx,
+          title: title,
+          message: message,
+          confirmAction: confirmAction,
+          scale: 1.2,
         );
+      },
+      transitionBuilder: (_, animation, ___, child) {
+        // // Custom animation tween
+        // Tween<Offset> tween;
+        // if (animation.status == AnimationStatus.reverse) {
+        //   tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
+        // } else {
+        //   tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
+        // }
+
+        return ScaleTransition(
+          scale: CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInCubic,
+            reverseCurve: Curves.easeInCubic,
+          ),
+          child: child,
+        );
+
+        // // Animation slide transition
+        // return SlideTransition(
+        //   position: tween.animate(animation),
+        //   child: FadeTransition(
+        //     opacity: animationScale,
+        //     child: child,
+        //   ),
+        // );
       },
     );
   }

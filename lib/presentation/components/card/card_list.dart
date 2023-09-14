@@ -18,9 +18,9 @@ class CardList extends StatelessWidget {
         case 2:
           return 80;
         case 3:
-          return 140;
+          return 100;
         case 4:
-          return 140;
+          return 120;
         case 5:
           return 140;
         default:

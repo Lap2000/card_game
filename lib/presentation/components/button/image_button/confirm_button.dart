@@ -1,25 +1,26 @@
 import 'package:card_game/app/config/const/assets_const.dart';
-import 'package:card_game/presentation/components/button/image_button/custom_image_button/custom_image_button.dart';
 import 'package:flutter/material.dart';
 
-class MainBackButton extends StatelessWidget {
-  const MainBackButton({
+import 'custom_image_button/custom_image_button.dart';
+
+class ConfirmButton extends StatelessWidget {
+  const ConfirmButton({
     super.key,
     this.padding = const EdgeInsets.only(top: 20),
     this.size = 40,
-    this.backAction,
+    this.confirmAction,
   });
 
   final EdgeInsets padding;
   final double size;
-  final VoidCallback? backAction;
+  final VoidCallback? confirmAction;
 
   @override
   Widget build(BuildContext context) {
     return CustomImageButton(
-      path: AssetsConstance.backIcon.path,
+      path: AssetsConstance.yesIcon.path,
       padding: padding,
-      action: backAction,
+      action: confirmAction,
       size: size,
     );
   }

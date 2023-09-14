@@ -1,4 +1,8 @@
+import 'package:card_game/app/type/card_value_enum.dart';
+import 'package:card_game/app/type/suits_enum.dart';
+import 'package:card_game/infrastructure/models/black_jack_player/black_jack_player.dart';
 import 'package:card_game/infrastructure/models/deck_of_cards/deck_of_cards.dart';
+import 'package:card_game/infrastructure/models/playing_card/playing_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -19,6 +23,7 @@ class BlackJackController extends GetxController
   RxBool isChange = false.obs;
 
   Rx<DeckOfCards> deckOfCards = DeckOfCards().obs;
+  Rx<BlackJackPlayer> player1 = BlackJackPlayer().obs;
 
   @override
   void onInit() {
@@ -34,6 +39,20 @@ class BlackJackController extends GetxController
           ..addStatusListener((status) {
             animationStatus = status;
           });
+
+    deckOfCards.value.shuffle();
+    hitFreeCards();
+    hitFreeCards();
+  }
+
+  hitFreeCards() {
+    if (deckOfCards.value.cards.isNotEmpty && player1.value.cards.length < 5) {
+      final newCard =
+          deckOfCards.value.hit() ?? PlayingCard(Suit.hearts, CardValue.ace);
+      player1.value.addCard(newCard);
+      player1.refresh();
+      print('length : ${player1.value.cards.length}');
+    }
   }
 
   @override

@@ -1,10 +1,12 @@
 import 'package:card_game/app/type/card_value_enum.dart';
 import 'package:card_game/infrastructure/models/playing_card/playing_card.dart';
 
-class BlackJackCards {
-  BlackJackCards(this._cards);
+class BlackJackPlayer {
+  BlackJackPlayer();
 
-  final List<PlayingCard> _cards;
+  final List<PlayingCard> _cards = [];
+
+  get cards => _cards;
 
   int valueOfCards() {
     int total = 0;
@@ -57,6 +59,6 @@ class BlackJackCards {
 
   // Add card
   addCard(PlayingCard card) {
-    _cards.insert(_cards.length - 1, card);
+    _cards.insert(_cards.length, card);
   }
 }

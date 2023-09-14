@@ -11,13 +11,13 @@ class FreeCards extends StatefulWidget {
     super.key,
     this.padding = const EdgeInsets.all(0),
     this.size = 40,
-    this.backAction,
+    this.action,
     required this.builder,
   });
 
   final EdgeInsets padding;
   final double size;
-  final VoidCallback? backAction;
+  final VoidCallback? action;
   final MyBuilder builder;
 
   @override
@@ -52,9 +52,12 @@ class _FreeCardsState extends State<FreeCards> with TickerProviderStateMixin {
     // top : (begin: 0.0, end: 100.0)
     animation = Tween(begin: 0.0, end: 100.0).animate(animationController)
       ..addListener(() {
-        setState(() {
-          setState(() {});
-        });
+        if (animationController.isCompleted && widget.action != null) {
+          setState(() {
+            widget.action!();
+          });
+        }
+        setState(() {});
       })
       ..addStatusListener((status) {
         animationStatus = status;
