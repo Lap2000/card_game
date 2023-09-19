@@ -39,70 +39,76 @@ class BaseDialog extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            child: SafeArea(
-              child: Stack(
-                children: [
-                  Container(
-                    height: 65 * scale,
+            child: Stack(
+              children: [
+                Container(
+                  margin: EdgeInsets.zero,
+                  padding: EdgeInsets.zero,
+                  height: 65 * scale,
+                  alignment: Alignment.center,
+                  child: Center(
+                    child: Text(
+                      title ?? 'Get back',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 18 * scale,
+                        color: Colors.amber,
+                        fontFamily: AssetsConstance.mainFontFamily.path,
+                      ),
+                      maxLines: 1,
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Container(
                     alignment: Alignment.center,
-                    child: Center(
-                      child: Text(
-                        title ?? 'Get back',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20 * scale,
-                          color: Colors.amber,
-                          fontFamily: AssetsConstance.mainFontFamily.path,
-                        ),
-                        maxLines: 1,
-                      ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
                     ),
-                  ),
-                  Center(
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                      ),
-                      height: 100 * scale,
-                      width: 220 * scale,
-                      child: content ??
-                          Text(
-                            message ??
-                                'What the hell? Why do you touch me? Don\'t touch me again!',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 16 * scale,
-                              color: AppColors.white.color,
-                              fontFamily: AssetsConstance.mainFontFamily.path,
-                              height: 1.2,
-                            ),
+                    height: 100 * scale,
+                    width: 220 * scale,
+                    child: content ??
+                        Text(
+                          message ??
+                              'What the hell? Why do you touch me? Don\'t touch me again!',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16 * scale,
+                            color: AppColors.white.color,
+                            fontFamily: AssetsConstance.mainFontFamily.path,
+                            height: 1.2,
                           ),
-                    ),
+                        ),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    child: SizedBox(
-                      width: 280 * scale,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          CancelButton(
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: SizedBox(
+                    width: 280 * scale,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Transform.scale(
+                          scale: scale >= 1.6 ? scale - 0.6 : 1.0,
+                          child: CancelButton(
                             cancelAction: Navigator.of(dialogContext).pop,
                           ),
-                          ConfirmButton(
+                        ),
+                        Transform.scale(
+                          scale: scale >= 1.6 ? scale - 0.6 : 1.0,
+                          child: ConfirmButton(
                             confirmAction: () {
                               Navigator.of(dialogContext).pop();
                               final callAction = confirmAction ?? () {};
                               callAction();
                             },
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

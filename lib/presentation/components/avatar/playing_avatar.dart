@@ -1,3 +1,4 @@
+import 'package:card_game/app/config/const/app_colors.dart';
 import 'package:card_game/presentation/components/avatar/circle_avatar.dart';
 import 'package:flutter/material.dart';
 
@@ -17,12 +18,15 @@ class PlayingAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CustomCircleAvatar(),
-        SizedBox(height: 8),
-        Text('14.000 \$'),
+        const CustomCircleAvatar(),
+        const SizedBox(height: 4),
+        Text(
+          '14.000 \$',
+          style: TextStyle(color: AppColors.white.color),
+        ),
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:card_game/app/utils/env/tablet_info.dart';
 import 'package:card_game/presentation/router/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -55,6 +56,12 @@ class _PlashScreenPageState extends State<PlashScreenPage> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => Future.delayed(
+        const Duration(seconds: 2),
+        () => TabletInfo().initCheckTablet(context),
+      ),
+    );
     return Scaffold(
       body: Container(
         child: jigglyPuff == null

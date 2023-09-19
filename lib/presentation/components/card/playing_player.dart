@@ -10,12 +10,14 @@ class PlayingPlayer extends StatelessWidget {
     this.padding = const EdgeInsets.only(top: 20),
     this.size = 20,
     this.isLast = false,
+    this.cardListWidget,
   });
 
   final EdgeInsets padding;
   final double size;
   final bool isLast;
   final List<PlayingCard> cardList;
+  final Widget? cardListWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class PlayingPlayer extends StatelessWidget {
             isLast ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           if (!isLast) const PlayingAvatar(),
-          CardList(cardList: cardList),
+          cardListWidget ?? CardList(cardList: cardList),
           if (isLast) const PlayingAvatar(),
         ],
       ),

@@ -1,17 +1,25 @@
 import 'package:card_game/presentation/components/dialog/base_dialog.dart';
 import 'package:card_game/presentation/components/dialog/language_dialog.dart';
+import 'package:card_game/presentation/controllers/dialog_controller/language_dialog_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:one_context/one_context.dart';
+
+import 'env/tablet_info.dart';
 
 class DialogUtil {
   // Show language dialog
   static Future<void> showLanguageDialog() async {
-    await OneContext().showDialog<int>(
+    await OneContext()
+        .showDialog<int>(
       barrierDismissible: true,
       builder: (BuildContext context) {
         return const LanguageDialog();
       },
-    );
+    )
+        .then((value) {
+      Get.delete<LanguageDialogController>();
+    });
   }
 
   // Show confirm dialog
@@ -21,6 +29,9 @@ class DialogUtil {
     String? message,
     VoidCallback? confirmAction,
   }) async {
+    bool isTablet = TabletInfo().isTablet();
+    final height = isTablet ? Get.width : Get.height;
+    final scaleDialog = 1.2 * (height / 864);
     showGeneralDialog(
       context: context,
       barrierLabel: "ImageBackground",
@@ -33,7 +44,7 @@ class DialogUtil {
           title: title,
           message: message,
           confirmAction: confirmAction,
-          scale: 1.2,
+          scale: scaleDialog,
         );
       },
       transitionBuilder: (_, animation, ___, child) {

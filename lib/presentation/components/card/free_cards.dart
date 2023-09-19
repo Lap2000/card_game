@@ -103,11 +103,12 @@ class _FreeCardsState extends State<FreeCards> with TickerProviderStateMixin {
                     return Transform.translate(
                       // left : Offset(animation.value, 0),
                       // right : Offset(-animation.value, 0),
-                      // top-left : Offset(animation.value + 50, -animation.value),
-                      // top-right : Offset(-animation.value - 50, -animation.value),
+                      // top-left : Offset(animation.value, -animation.value),
+                      // top-right : Offset(-animation.value, -animation.value),
                       // top-center : Offset(0, -animation.value),
-                      // bottom-center : Offset(0, animation.value),
-                      offset: Offset(0, -animation.value),
+                      // bottom-left : Offset(-animation.value, animation.value),
+                      // bottom-right : Offset(animation.value, animation.value),
+                      offset: Offset(-animation.value, animation.value),
                       child: Transform.scale(
                         scale: animationScale.value,
                         child: child,

@@ -3,14 +3,17 @@ import 'dart:ui';
 
 import 'package:card_game/app/utils/Localization/st_en_us.dart';
 import 'package:card_game/app/utils/Localization/st_vi_vn.dart';
+import 'package:card_game/app/utils/validate_util.dart';
+import 'package:card_game/infrastructure/data_sources/app_preferences/app_preferences.dart';
 import 'package:get/get.dart';
 
 class LocalizationService extends Translations {
-  static final locale = _getLocaleFromLanguage();
+  static Locale? locale = _getLocaleFromLanguage();
 
   static const fallbackLocale = Locale('en', 'US');
 
   static void changeLocale(Locale localeArg) {
+    AppPreferences().setLanguage(localeArg.languageCode);
     Get.updateLocale(localeArg);
   }
 
@@ -18,18 +21,30 @@ class LocalizationService extends Translations {
     'vi',
     'en',
     'ja',
+    'zh',
+    'ko',
+    'fr',
+    'it',
   ];
 
   static final locales = [
     const Locale('vi', 'VN'),
     const Locale('en', 'US'),
     const Locale('ja', 'JP'),
+    const Locale('zh', 'CN'),
+    const Locale('ko', 'KR'),
+    const Locale('fr', 'FR'),
+    const Locale('it', 'IT'),
   ];
 
   static final langs = LinkedHashMap.from({
     'vi': 'Tiếng Việt',
     'en': 'English',
-    'ja': 'Japan',
+    'ja': 'Japanese',
+    'zh': 'Chinese',
+    'ko': 'Korean',
+    'fr': 'French',
+    'it': 'Italian',
   });
 
   @override
@@ -45,6 +60,16 @@ class LocalizationService extends Translations {
       if (lang == langCodes[i]) return locales[i];
     }
     return Get.locale;
+  }
+
+  static Future<void> getLanguageFromAppPreferences() async {
+    final localeCode = await AppPreferences().getLanguage();
+    if (ValidateString.isEmptyString(localeCode)) {
+      return;
+    } else {
+      locale = LanguageExt.getLocale(localeCode);
+      Get.updateLocale(LanguageExt.getLocale(localeCode));
+    }
   }
 }
 
@@ -74,7 +99,15 @@ extension LanguageExt on Language {
       case 'vi':
         return 'Việt Nam';
       case 'ja':
-        return 'Japanese';
+        return 'Japanese (not supported)';
+      case 'zh':
+        return 'Chinese (not supported)';
+      case 'ko':
+        return 'Korean (not supported)';
+      case 'fr':
+        return 'French (not supported)';
+      case 'it':
+        return 'Italian (not supported)';
       default:
         return 'English';
     }

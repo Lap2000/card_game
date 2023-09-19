@@ -18,7 +18,7 @@ class CancelButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomImageButton(
-      path: AssetsConstance.cancelIcon.path,
+      path: AssetsConstance.cancelDialogIcon.path,
       padding: padding,
       action: cancelAction,
       size: size,

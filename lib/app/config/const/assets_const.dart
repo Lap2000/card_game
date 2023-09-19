@@ -12,14 +12,26 @@ enum AssetsConstance {
   dialogBackground(path: "assets/images/dialog_background.png"),
   selectedBackground(path: "assets/images/selected_background.png"),
   unselectedBackground(path: "assets/images/unselected_background.png"),
+  pokerTableImage(path: "assets/images/poker_table.png"),
 
   // asset - icons
   table4Icon(path: "assets/icons/table_for_4_people.png"),
   table6Icon(path: "assets/icons/table_for_6_people.png"),
-  settingsIcon(path: "assets/icons/settings_icon_main.png"),
-  backIcon(path: "assets/icons/back_button.png"),
-  cancelIcon(path: "assets/icons/cancel_button_image.png"),
-  yesIcon(path: "assets/icons/yes_button_image.png"),
+  // settingsIcon(path: "assets/icons/settings_icon_main.png"),
+  settingsIcon(path: "assets/icons/settings_image.png"),
+  backIcon(path: "assets/icons/back_image.png"),
+  // backIcon(path: "assets/icons/back_button.png"),
+  cancelDialogIcon(path: "assets/icons/cancel_button_image.png"),
+  yesDialogIcon(path: "assets/icons/yes_button_image.png"),
+  // asset - app icons
+  homeIcon(path: "assets/icons/home_image.png"),
+  nextIcon(path: "assets/icons/next_image.png"),
+  moreInfoIcon(path: "assets/icons/more_info_image.png"),
+  moreOptionsIcon(path: "assets/icons/more_options_image.png"),
+  mutedIcon(path: "assets/icons/muted_image.png"),
+  unMutedIcon(path: "assets/icons/unmuted_image.png"),
+  deleteIcon(path: "assets/icons/delete_image.png"),
+  cancelIcon(path: "assets/icons/cancel_image.png"),
 
   // asset - suits
   clubSVG(path: "assets/suits/club.svg"),

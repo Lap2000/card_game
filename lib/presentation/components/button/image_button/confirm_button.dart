@@ -18,7 +18,7 @@ class ConfirmButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomImageButton(
-      path: AssetsConstance.yesIcon.path,
+      path: AssetsConstance.yesDialogIcon.path,
       padding: padding,
       action: confirmAction,
       size: size,

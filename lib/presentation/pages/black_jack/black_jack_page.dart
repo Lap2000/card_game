@@ -48,109 +48,111 @@ class BlackJackPage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: SafeArea(
-            child: Container(
-              height: Get.height,
-              width: Get.width,
+          child: Container(
+            height: Get.height,
+            width: Get.width,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(AssetsConstance.pokerTableImage.path),
+                fit: BoxFit.fill,
+              ),
+            ),
+            child: SafeArea(
               child: Stack(
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            MainBackButton(
-                              padding: EdgeInsets.zero,
-                              backAction: () {
-                                DialogUtil.showConfirmDialog(
-                                  context,
-                                  title: LocaleKeys.back.tr,
-                                  confirmAction: Get.back,
-                                );
-                              },
-                            ),
-                            MainSettingsButton(
-                              padding: EdgeInsets.zero,
-                              settingsAction: () {
-                                callGetCardAnimation();
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Flexible(
-                              flex: 1,
-                              child: PlayingPlayer(
-                                cardList: list,
-                                isLast: false,
-                              ),
-                            ),
-                            Flexible(
-                              flex: 1,
-                              child: PlayingPlayer(
-                                cardList: list,
-                                isLast: false,
-                              ),
-                            ),
-                            Flexible(
-                              flex: 1,
-                              child: PlayingPlayer(
-                                cardList: list1,
-                                isLast: true,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          PlayingPlayer(
-                            cardList: list1,
-                          ),
-                          PlayingPlayer(
-                            cardList: list,
-                            isLast: true,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      // const ExampleCardFan(),
-                      getCardAnimation(),
-                      //cardFake(),
-                    ],
+                  // Back button
+                  Positioned(
+                    top: 10,
+                    left: 10,
+                    child: MainBackButton(
+                      padding: EdgeInsets.zero,
+                      backAction: () {
+                        DialogUtil.showConfirmDialog(
+                          context,
+                          title: LocaleKeys.back.tr,
+                          confirmAction: Get.back,
+                        );
+                      },
+                    ),
                   ),
-                  Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: 50),
-                        Expanded(
-                          child: FreeCards(
-                            action: controller.hitFreeCards,
-                            builder: (
-                              BuildContext context,
-                              void Function() func,
-                            ) {
-                              callGetCardAnimation = func;
-                            },
-                          ),
-                        ),
-                      ],
+                  // Settings button
+                  Positioned(
+                    top: 10,
+                    right: 10,
+                    child: MainSettingsButton(
+                      padding: EdgeInsets.zero,
+                      settingsAction: () {
+                        callGetCardAnimation();
+                      },
+                    ),
+                  ),
+                  // top - left
+                  Positioned(
+                    top: 10,
+                    left: Get.width / 4 - (200 / 2),
+                    child: PlayingPlayer(
+                      cardList: list,
+                      isLast: false,
+                    ),
+                  ),
+                  // top - right
+                  Positioned(
+                    top: 10,
+                    left: Get.width / 4 * 3 - (200 / 2),
+                    child: PlayingPlayer(
+                      cardList: list,
+                      isLast: true,
+                    ),
+                  ),
+                  // center - left
+                  Positioned(
+                    top: Get.height / 2 - 40,
+                    left: 10,
+                    child: PlayingPlayer(
+                      cardList: list,
+                      isLast: false,
+                    ),
+                  ),
+                  // center - right
+                  Positioned(
+                    top: Get.height / 2 - 40,
+                    right: 10,
+                    child: PlayingPlayer(
+                      cardList: list,
+                      isLast: true,
+                    ),
+                  ),
+                  // bottom - left
+                  Positioned(
+                    bottom: 10,
+                    left: Get.width / 4 - (200 / 2),
+                    child: PlayingPlayer(
+                      cardList: const [],
+                      cardListWidget: getCardAnimation(),
+                      isLast: false,
+                    ),
+                  ),
+                  // bottom - right
+                  Positioned(
+                    bottom: 10,
+                    left: Get.width / 4 * 3 - (200 / 2),
+                    child: PlayingPlayer(
+                      cardList: list,
+                      isLast: true,
+                    ),
+                  ),
+                  // center - free cards
+                  Positioned(
+                    top: Get.height / 2 - 55,
+                    left: Get.width / 2 - 40,
+                    child: FreeCards(
+                      action: controller.hitFreeCards,
+                      builder: (
+                        BuildContext context,
+                        void Function() func,
+                      ) {
+                        callGetCardAnimation = func;
+                      },
                     ),
                   ),
                 ],
@@ -168,7 +170,7 @@ class BlackJackPage extends StatelessWidget {
         side: const BorderSide(color: Colors.black, width: 1));
     final card = PlayingCard(Suit.hearts, CardValue.ten);
     return Center(
-      child: Container(
+      child: SizedBox(
         height: 80,
         width: 60,
         child: CustomPlayerCard(
@@ -180,13 +182,6 @@ class BlackJackPage extends StatelessWidget {
       ),
     );
   }
-
-  // Widget cardsFake() {
-  //   Get.put(BlackJackController());
-  //   final controller = BlackJackController.to;
-  //
-  //   return Obx();
-  // }
 
   Widget getCardAnimation() {
     Get.put(BlackJackController());
@@ -220,13 +215,4 @@ class BlackJackPage extends StatelessWidget {
       ),
     );
   }
-
-  // Widget addCardContainer() {
-  //   return const Row(
-  //     mainAxisAlignment: MainAxisAlignment.center,
-  //     children: [
-  //       FreeCards(),
-  //     ],
-  //   );
-  // }
 }

@@ -44,6 +44,9 @@ dependencies:
   # DB
   hive: ^2.2.3
 
+  # shared_preferences
+  shared_preferences: ^2.2.1
+
   # Model
   json_serializable: ^6.6.1
   freezed_annotation: ^2.2.0
@@ -59,7 +62,7 @@ dependencies:
   one_context: ^2.1.0
   flutter_svg: ^2.0.7
 
-  #Animation
+  # Animation
 
   # Sound
   just_audio: ^0.9.31

@@ -18,10 +18,17 @@ class LanguageDialogController extends GetxController {
   }
 
   void setSelected(String value) {
+    print('selected : $value');
     selected.value = value;
   }
 
   int getIndexOfSelectedItem() {
     return LocalizationService.langCodes.indexWhere((e) => e == selected.value);
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 }
