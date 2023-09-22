@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class CustomImageButton extends StatelessWidget {
   const CustomImageButton({
     super.key,
-    this.padding = const EdgeInsets.only(top: 20),
+    this.padding = const EdgeInsets.only(top: 0),
     this.size = 40,
     this.action,
     required this.path,

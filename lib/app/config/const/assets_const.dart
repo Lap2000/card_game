@@ -13,6 +13,12 @@ enum AssetsConstance {
   selectedBackground(path: "assets/images/selected_background.png"),
   unselectedBackground(path: "assets/images/unselected_background.png"),
   pokerTableImage(path: "assets/images/poker_table.png"),
+  columnImage(path: "assets/images/column.png"),
+  gameLabelImage(path: "assets/images/game_label.png"),
+  homeOptionImage(path: "assets/images/home_options_image.png"),
+  mainFormImage(path: "assets/images/main_form.png"),
+  clownImage(path: "assets/images/clown.png"),
+  backgroundCardsImage(path: "assets/images/background_cards.png"),
 
   // asset - icons
   table4Icon(path: "assets/icons/table_for_4_people.png"),
@@ -32,6 +38,9 @@ enum AssetsConstance {
   unMutedIcon(path: "assets/icons/unmuted_image.png"),
   deleteIcon(path: "assets/icons/delete_image.png"),
   cancelIcon(path: "assets/icons/cancel_image.png"),
+  downloadIcon(path: "assets/icons/download_image.png"),
+  searchIcon(path: "assets/icons/search_image.png"),
+  switchIcon(path: "assets/icons/switch_image.png"),
 
   // asset - suits
   clubSVG(path: "assets/suits/club.svg"),

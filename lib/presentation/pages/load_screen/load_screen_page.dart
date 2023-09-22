@@ -81,8 +81,9 @@ class _PlashScreenPageState extends State<PlashScreenPage> {
                         height: 150,
                         width: MediaQuery.of(context).size.width,
                         child: const RiveAnimation.asset(
-                            'assets/rive_files/loading_ver2.riv',
-                            fit: BoxFit.cover),
+                          'assets/rive_files/loading_ver2.riv',
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ],
                   ),

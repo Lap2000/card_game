@@ -1,12 +1,11 @@
 import 'package:card_game/app/config/const/assets_const.dart';
-import 'package:card_game/app/type/card_value_enum.dart';
-import 'package:card_game/app/type/suits_enum.dart';
-import 'package:card_game/infrastructure/models/playing_card/playing_card.dart';
-import 'package:card_game/presentation/components/button/image_button/back_button.dart';
-import 'package:card_game/presentation/components/button/image_button/settings_button.dart';
-import 'package:card_game/presentation/controllers/home_controller.dart';
+import 'package:card_game/presentation/components/button/image_button/custom_image_button/custom_image_button.dart';
+import 'package:card_game/presentation/components/button/image_button/home_options_button.dart';
+import 'package:card_game/presentation/controllers/home_controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'more_options/more_options_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,19 +14,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(HomeController());
     final controller = HomeController.to;
-    ShapeBorder shape = RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(5),
-        side: const BorderSide(color: Colors.black, width: 1));
-    final list = [
-      PlayingCard(Suit.hearts, CardValue.ace),
-      PlayingCard(Suit.spades, CardValue.ace),
-      PlayingCard(Suit.diamonds, CardValue.ace),
-      PlayingCard(Suit.clubs, CardValue.ace),
-    ];
-    final list1 = <PlayingCard>[
-      PlayingCard(Suit.hearts, CardValue.ace),
-      PlayingCard(Suit.spades, CardValue.ace),
-    ];
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -38,17 +24,94 @@ class HomePage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: const SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+          child: SafeArea(
+            child: Stack(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MainBackButton(),
-                    MainSettingsButton(),
-                  ],
+                // More options button
+                const Positioned(
+                  bottom: 10,
+                  right: 10,
+                  child: MoreOptionsButton(),
+                ),
+
+                // Main Form
+                Center(
+                  child: AnimatedBuilder(
+                    animation: controller.animationController.view,
+                    builder: (context, child) {
+                      return Transform.translate(
+                        offset: Offset(controller.transAnimation.value, 0),
+                        child: FadeTransition(
+                          opacity: controller.fadeAnimation,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              HomeOptionsButton(
+                                title: 'PLAY',
+                                action: controller.callAnimation,
+                              ),
+                              HomeOptionsButton(
+                                title: 'OPTIONS',
+                                action: controller.callAnimation,
+                              ),
+                              HomeOptionsButton(
+                                title: 'EXIT',
+                                action: Get.back,
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+
+                // Options
+                AnimatedBuilder(
+                  animation: controller.animationController.view,
+                  builder: (context, child) {
+                    return Transform.translate(
+                      offset: Offset(controller.optionsTransAnimation.value, 0),
+                      child: FadeTransition(
+                        opacity: controller.optionsFadeAnimation,
+                        child: Center(
+                          child: Container(
+                            height: Get.height * 0.8,
+                            width: Get.width * 0.8,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(
+                                    AssetsConstance.mainFormImage.path),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            child: Stack(
+                              children: [
+                                Positioned(
+                                  top: 0,
+                                  right: 30,
+                                  child: CustomImageButton(
+                                    path: AssetsConstance.cancelIcon.path,
+                                    action: () {
+                                      controller.callAnimation(
+                                        positionX1: -500.0,
+                                        positionX2: 0.0,
+                                        optionPositionX1: 0.0,
+                                        optionPositionX2: 700.0,
+                                        fadeBegin: 1.0,
+                                        fadeEnd: 0.0,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

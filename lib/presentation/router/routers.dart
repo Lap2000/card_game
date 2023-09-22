@@ -3,7 +3,7 @@ import 'package:card_game/presentation/pages/black_jack/black_jack_tables_page.d
 import 'package:card_game/presentation/pages/home/home_page.dart';
 import 'package:card_game/presentation/pages/login/login_page.dart';
 import 'package:card_game/presentation/router/pages.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:get/get.dart';
 
 final List<GetPage<dynamic>> routers = [
   GetPage(
@@ -13,6 +13,8 @@ final List<GetPage<dynamic>> routers = [
   GetPage(
     name: Pages.home.pageName,
     page: () => const HomePage(),
+    transitionDuration: const Duration(milliseconds: 500),
+    transition: Transition.fadeIn,
   ),
   GetPage(
     name: Pages.blackJack.pageName,

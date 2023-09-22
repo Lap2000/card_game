@@ -18,7 +18,6 @@ class LanguageDialogController extends GetxController {
   }
 
   void setSelected(String value) {
-    print('selected : $value');
     selected.value = value;
   }
 

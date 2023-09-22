@@ -54,7 +54,6 @@ class LanguageDialog extends StatelessWidget {
           diameterRatio: 0.8,
           physics: const ScrollPhysics(),
           onSelectedItemChanged: (index) {
-            print('index : $index');
             controller.setSelected(LocalizationService.langCodes[index]);
           },
           children:

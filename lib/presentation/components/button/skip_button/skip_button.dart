@@ -51,7 +51,6 @@ class _SkipButtonState extends State<SkipButton> with TickerProviderStateMixin {
     animation = Tween(begin: 0.0, end: 150.0).animate(animationController)
       ..addListener(() {
         setState(() {
-          print(animation.value);
           setState(() {});
         });
       })
