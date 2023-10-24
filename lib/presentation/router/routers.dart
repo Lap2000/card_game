@@ -23,5 +23,7 @@ final List<GetPage<dynamic>> routers = [
   GetPage(
     name: Pages.blackJackTables.pageName,
     page: () => const BlackJackTablesPage(),
+    transitionDuration: const Duration(milliseconds: 500),
+    transition: Transition.fadeIn,
   ),
 ];

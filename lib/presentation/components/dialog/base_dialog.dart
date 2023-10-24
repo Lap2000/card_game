@@ -89,13 +89,13 @@ class BaseDialog extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Transform.scale(
-                          scale: scale >= 1.6 ? scale - 0.6 : 1.0,
+                          scale: scale >= 1.5 ? 1.3 : scale,
                           child: CancelButton(
                             cancelAction: Navigator.of(dialogContext).pop,
                           ),
                         ),
                         Transform.scale(
-                          scale: scale >= 1.6 ? scale - 0.6 : 1.0,
+                          scale: scale >= 1.5 ? 1.3 : scale,
                           child: ConfirmButton(
                             confirmAction: () {
                               Navigator.of(dialogContext).pop();

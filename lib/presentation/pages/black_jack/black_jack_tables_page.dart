@@ -24,22 +24,27 @@ class BlackJackTablesPage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: const SafeArea(
-            child: Stack(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MainBackButton(),
-                      MainSettingsButton(),
-                    ],
-                  ),
+          child: Stack(
+            children: [
+              // Back button
+              const Positioned(
+                top: 10,
+                left: 10,
+                child: MainBackButton(
+                  padding: EdgeInsets.zero,
                 ),
-                TableList(),
-              ],
-            ),
+              ),
+              // Settings button
+              Positioned(
+                top: 10,
+                right: 10,
+                child: MainSettingsButton(
+                  padding: EdgeInsets.zero,
+                  settingsAction: () {},
+                ),
+              ),
+              const TableList(),
+            ],
           ),
         ),
       ),

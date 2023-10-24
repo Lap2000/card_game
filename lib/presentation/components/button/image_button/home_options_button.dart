@@ -1,5 +1,5 @@
-import 'package:card_game/app/config/const/app_colors.dart';
 import 'package:card_game/app/config/const/assets_const.dart';
+import 'package:card_game/presentation/components/text/app_text.dart';
 import 'package:flutter/material.dart';
 
 class HomeOptionsButton extends StatelessWidget {
@@ -24,37 +24,25 @@ class HomeOptionsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100 * scale,
-      width: 250 * scale,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50),
-        image: DecorationImage(
-          image: AssetImage(
-            AssetsConstance.homeOptionImage.path,
-          ),
-          fit: BoxFit.cover,
-        ),
-      ),
-      alignment: Alignment.center,
-      child: InkWell(
-        onTap: action ?? () {},
-        child: Container(
-          width: 180 * scale,
-          height: 70 * scale,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-          ),
-          alignment: Alignment.center,
-          child: Text(
-            title,
-            style: TextStyle(
-              fontSize: 28 * scale,
-              color: AppColors.white.color,
-              fontFamily: path ?? AssetsConstance.mainFontFamily.path,
-              height: 1.2 * scale,
+    return InkWell(
+      onTap: action ?? () {},
+      child: Container(
+        width: 220 * scale,
+        height: scale >= 1.5 ? 150 : 100,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50),
+          image: DecorationImage(
+            image: AssetImage(
+              AssetsConstance.homeOptionImage.path,
             ),
+            fit: BoxFit.cover,
           ),
+        ),
+        alignment: Alignment.center,
+        child: AppText(
+          text: title,
+          fontSize: 28,
+          fontFamily: path ?? AssetsConstance.mainFontFamily.path,
         ),
       ),
     );

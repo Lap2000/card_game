@@ -61,6 +61,8 @@ dependencies:
   rive_splash_screen: ^0.1.1
   one_context: ^2.1.0
   flutter_svg: ^2.0.7
+  sleek_circular_slider: ^2.0.1
+  flutter_xlider: ^3.5.0
 
   # Animation
 

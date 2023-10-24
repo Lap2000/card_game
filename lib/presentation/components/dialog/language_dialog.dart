@@ -1,7 +1,7 @@
 import 'package:card_game/app/config/const/app_colors.dart';
 import 'package:card_game/app/config/const/assets_const.dart';
 import 'package:card_game/app/utils/Localization/localkeys.dart';
-import 'package:card_game/app/utils/env/tablet_info.dart';
+import 'package:card_game/app/utils/env/device_info.dart';
 import 'package:card_game/app/utils/localization_service_util.dart';
 import 'package:card_game/presentation/controllers/dialog_controller/language_dialog_controller.dart';
 import 'package:card_game/presentation/controllers/login_controller.dart';
@@ -33,12 +33,8 @@ class LanguageDialog extends StatelessWidget {
       );
     });
 
-    bool isTablet = TabletInfo().isTablet();
-    final height = isTablet ? Get.width : Get.height;
-    final scaleDialog = height / 864;
-
     return BaseDialog(
-      scale: 1.5 * scaleDialog,
+      scale: 1.5 * DeviceInfo().scale(),
       dialogContext: context,
       title: LocaleKeys.lang.tr,
       confirmAction: () {
@@ -47,7 +43,7 @@ class LanguageDialog extends StatelessWidget {
         loginController.refreshAppBarTitle();
       },
       content: SizedBox(
-        height: 150 * scaleDialog,
+        height: 150 * DeviceInfo().scale(),
         child: ListWheelScrollView(
           controller: controller.scrollController,
           itemExtent: 30,
@@ -80,7 +76,7 @@ class LanguageDialog extends StatelessWidget {
                   child: Text(
                     LanguageExt.getTitle(key),
                     style: TextStyle(
-                      fontSize: 14 * scaleDialog,
+                      fontSize: 14 * DeviceInfo().scale(),
                       color: controller.selected.value == key
                           ? AppColors.black.color
                           : AppColors.white.color,

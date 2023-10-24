@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:one_context/one_context.dart';
 
-import 'env/tablet_info.dart';
+import 'env/device_info.dart';
 
 class DialogUtil {
   // Show language dialog
@@ -29,9 +29,6 @@ class DialogUtil {
     String? message,
     VoidCallback? confirmAction,
   }) async {
-    bool isTablet = TabletInfo().isTablet();
-    final height = isTablet ? Get.width : Get.height;
-    final scaleDialog = 1.2 * (height / 864);
     showGeneralDialog(
       context: context,
       barrierLabel: "ImageBackground",
@@ -44,7 +41,7 @@ class DialogUtil {
           title: title,
           message: message,
           confirmAction: confirmAction,
-          scale: scaleDialog,
+          scale: DeviceInfo().scale(),
         );
       },
       transitionBuilder: (_, animation, ___, child) {

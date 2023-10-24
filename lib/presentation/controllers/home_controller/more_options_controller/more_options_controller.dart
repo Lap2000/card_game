@@ -1,3 +1,4 @@
+import 'package:card_game/app/utils/env/device_info.dart';
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 
@@ -17,16 +18,16 @@ class MoreOptionsController extends GetxController
   // var : check options(showing/hiding) to set Animation
   RxBool isHiding = false.obs;
 
-  double position1 = 145.0;
-  double position2 = 100.0;
-  double position3 = 60.0;
-  double zeroPosition = 0.0;
+  double position1 = 130.0 * DeviceInfo().scale();
+  double position2 = 90.0 * DeviceInfo().scale();
+  double position3 = 50.0 * DeviceInfo().scale();
+  double zeroPosition = 0.0 * DeviceInfo().scale();
 
   @override
   void onInit() {
     super.onInit();
     animationController = AnimationController(
-        duration: const Duration(milliseconds: 800), vsync: this);
+        duration: const Duration(milliseconds: 400), vsync: this);
     setAnimation();
   }
 

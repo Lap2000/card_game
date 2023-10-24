@@ -1,3 +1,4 @@
+import 'package:card_game/app/utils/env/device_info.dart';
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   late Animation<double> fadeAnimation;
   late Animation<double> optionsFadeAnimation;
   late Animation<double> optionsTransAnimation;
+  final scale = DeviceInfo().scale();
 
   @override
   void onInit() {
@@ -18,13 +20,14 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     super.onInit();
     animationController = AnimationController(
         duration: const Duration(milliseconds: 800), vsync: this);
-    transAnimation = Tween(begin: 500.0, end: 0.0).animate(animationController)
-      ..addListener(() {})
-      ..addStatusListener((status) {
-        animationStatus = status;
-      });
-    optionsTransAnimation =
-        Tween(begin: 700.0, end: 700.0).animate(animationController);
+    transAnimation =
+        Tween(begin: 500.0 * scale, end: 0.0).animate(animationController)
+          ..addListener(() {})
+          ..addStatusListener((status) {
+            animationStatus = status;
+          });
+    optionsTransAnimation = Tween(begin: 1000.0 * scale, end: 1000.0 * scale)
+        .animate(animationController);
     fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(animationController);
     optionsFadeAnimation =
         Tween(begin: 0.0, end: 1.0).animate(animationController);
@@ -39,8 +42,8 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
     double fadeBegin = 0.0,
     double fadeEnd = 1.0,
   }) {
-    setTransAnimation(positionX1, positionX2);
-    setOpsTransAnimation(optionPositionX1, optionPositionX2);
+    setTransAnimation(positionX1 * scale, positionX2 * scale);
+    setOpsTransAnimation(optionPositionX1 * scale, optionPositionX2 * scale);
     setFadeAnimation(fadeEnd, fadeBegin);
     setOpsFadeAnimation(fadeBegin, fadeEnd);
     animationController.reset();

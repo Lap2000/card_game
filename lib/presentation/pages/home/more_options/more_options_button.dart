@@ -1,4 +1,5 @@
 import 'package:card_game/app/config/const/assets_const.dart';
+import 'package:card_game/app/utils/env/device_info.dart';
 import 'package:card_game/presentation/components/button/image_button/custom_image_button/custom_image_button.dart';
 import 'package:card_game/presentation/controllers/home_controller/more_options_controller/more_options_controller.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +12,11 @@ class MoreOptionsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(MoreOptionsController());
     final controller = MoreOptionsController.to;
+    final scale = DeviceInfo().scale();
+
     return Container(
-      width: 60,
-      height: 200,
+      width: 60 * scale,
+      height: 200 * scale,
       decoration: BoxDecoration(
         color: Colors.transparent,
         borderRadius: BorderRadius.circular(50),
