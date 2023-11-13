@@ -19,6 +19,13 @@ enum AssetsConstance {
   mainFormImage(path: "assets/images/main_form.png"),
   clownImage(path: "assets/images/clown.png"),
   backgroundCardsImage(path: "assets/images/background_cards.png"),
+  frameImage(path: "assets/images/frame_image.png"),
+  headerFrameImage(path: "assets/images/header_frame_image.png"),
+  inputImage(path: "assets/images/input_image.png"),
+  lightInputImage(path: "assets/images/input_image_light.png"),
+  bGForestImage(path: "assets/images/bg_forest.png"),
+  nextLoginImage(path: "assets/images/next_login_image.png"),
+  buttonImage(path: "assets/images/button_image.png"),
 
   // asset - icons
   table4Icon(path: "assets/icons/table_for_4_people.png"),
@@ -41,6 +48,9 @@ enum AssetsConstance {
   downloadIcon(path: "assets/icons/download_image.png"),
   searchIcon(path: "assets/icons/search_image.png"),
   switchIcon(path: "assets/icons/switch_image.png"),
+  fbIcon(path: "assets/icons/fb_image.png"),
+  ggIcon(path: "assets/icons/gg_image.png"),
+  langIcon(path: "assets/icons/lang_image.png"),
 
   // asset - suits
   clubSVG(path: "assets/suits/club.svg"),

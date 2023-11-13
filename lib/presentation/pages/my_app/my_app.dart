@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Card Game',
+      debugShowCheckedModeBanner: false,
       getPages: routers,
       theme: ThemeData(
         primarySwatch: Colors.blue,

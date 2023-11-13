@@ -10,6 +10,8 @@ Future<void> initialize() async {
     DeviceOrientation.landscapeRight,
     DeviceOrientation.landscapeLeft,
   ]);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom]);
   //await Firebase.initializeApp();
   //await SharedPreferencesUtil.getInstance();
   //await PackageInfo.fromPlatform();
